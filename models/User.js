@@ -33,6 +33,7 @@ User.init(
   {
     sequelize:connection,
     modelName: 'User',
+    tableName: 'users',
     hooks: {
       beforeCreate: async (user) => {
         user.pass = await bcrypt.hash(user.pass, 10);
