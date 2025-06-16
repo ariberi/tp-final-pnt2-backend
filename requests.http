@@ -1,0 +1,52 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=WebStorm
+
+###
+GET http://localhost:3000/api/categories
+Authorization: Bearer supersecret
+
+
+### Obtener categorías con token JWT
+GET http://localhost:3000/api/categories
+Authorization: Bearer supersecret
+
+###
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "id": 0,
+  "email": "caca@caca.com",
+  "name": "Caca",
+  "pass": "1234"
+}
+
+
+###
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDEwNDY1NiwiZXhwIjoxNzUwNzA5NDU2fQ.eoKn_rylpm-QZyL9yDsP-cLeT290sEcYRylUdXUAf-c
+
+{
+  "name": "Supermercado"
+}
+
+###
+POST http://localhost:3000/api/expenses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDEwNDY1NiwiZXhwIjoxNzUwNzA5NDU2fQ.eoKn_rylpm-QZyL9yDsP-cLeT290sEcYRylUdXUAf-c
+
+{
+  "amount": 100,
+  "description": "Carga de sube",
+  "date": "2025-02-10"
+}
+
+###
+GET http://localhost:3000/api/categories
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDEwNDY1NiwiZXhwIjoxNzUwNzA5NDU2fQ.eoKn_rylpm-QZyL9yDsP-cLeT290sEcYRylUdXUAf-c
+
+### login
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
