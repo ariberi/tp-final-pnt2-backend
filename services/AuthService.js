@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import { User } from '../models/index.js';
 import { JWT_SECRET } from '../config/config.js';
 
 class AuthService {

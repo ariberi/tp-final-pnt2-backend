@@ -33,10 +33,5 @@ Expense.init(
   }
 );
 
-User.hasMany(Expense);
-Expense.belongsTo(User);
-
-Category.hasMany(Expense);
-Expense.belongsTo(Category);
 
 export default Expense;

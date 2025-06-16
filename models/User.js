@@ -36,7 +36,8 @@ User.init(
     tableName: 'users',
     hooks: {
       beforeCreate: async (user) => {
-        user.pass = await bcrypt.hash(user.pass, 10);
+          const salt = await bcrypt.genSalt(10);
+          user.pass = await bcrypt.hash(user.pass, salt);
       }
     }
   }

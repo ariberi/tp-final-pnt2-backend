@@ -1,4 +1,5 @@
-import Category from "../models/Category.js";
+import { Category } from '../models/index.js';
+
 
 class CategoryService {
   create(data) {
