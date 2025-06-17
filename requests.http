@@ -1,60 +1,68 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=WebStorm
-
-###
+### Crear un nuevo usuario
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "id": 0,
-  "email": "prueba@prueba.com",
+  "email": "prueba@prueba.prueba",
   "name": "Prueba",
-  "pass": "1234"
+  "password": "123456789"
 }
 
-###
+### Login de un usuario existente
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "prueba@prueba.prueba",
+  "password": "123456789"
+}
 
 
-### login
+### Crear una nueva categoría
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTk2MWJjYy0wMmI3LTRmODYtYTc5My03MDMxMzYzNmU0ZmYiLCJpYXQiOjE3NTAxMjA5NTUsImV4cCI6MTc1MDcyNTc1NX0.WqeYDE1t8oewCtJRfscwutZFAQ4fnR416mlA4j_kijE
+
+{
+  "name": "Tecnología",
+  "userId": "e328964a-f0cb-48da-bc6a-8eddefc6b163"
+}
+
+
+
+### Agregar un nuevo gasto
+POST http://localhost:3000/api/expenses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTk2MWJjYy0wMmI3LTRmODYtYTc5My03MDMxMzYzNmU0ZmYiLCJpYXQiOjE3NTAxMjA5NTUsImV4cCI6MTc1MDcyNTc1NX0.WqeYDE1t8oewCtJRfscwutZFAQ4fnR416mlA4j_kijE
+
+{
+  "amount": 2500,
+  "description": "Carga de sube",
+  "categoryId": "39ba18e0-1942-4389-b37a-e9f07bd63717",
+  "userId": "6a961bcc-02b7-4f86-a793-70313636e4ff",
+  "date": "2025-02-10"
+}
+
+
+### Iniciar sesión
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
     "email": "prueba@prueba.com",
-    "pass": "1234"
+    "password": "1234"
 
 }
 
-###
+### Obtener todos los usuarios
 GET http://localhost:3000/api/users
 
 
-
-###
-POST http://localhost:3000/api/categories
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
-
-{
-  "name": "Supermercado"
-}
-
-###
-POST http://localhost:3000/api/expenses
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
-
-{
-  "amount": 100,
-  "description": "Carga de sube",
-  "date": "2025-02-10"
-}
-
-###
+### Obtener todas las categorías
 GET http://localhost:3000/api/categories
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
-### login
-POST http://localhost:3000/api/auth/login
-Content-Type: application/json
+### Obtener todos los gastos
+GET http://localhost:3000/api/expenses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
+
