@@ -1,5 +1,5 @@
-import Expense from '../models/Expense.js';
-import Category from '../models/Category.js';
+import { Expense, Category } from '../models/index.js';
+
 
 class ExpenseService {
   async create(userId, data) {

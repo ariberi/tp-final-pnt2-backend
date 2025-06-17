@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --env-file .env --watch .",
-    "start": "node index.js node .s"
+    "dev": "docker-compose up -d && node --env-file .env --watch .",
+    "start": "docker-compose up -d && node --env-file .env index.js node .s",
+    "stop": "docker-compose down"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

@@ -1,44 +1,46 @@
 import { DataTypes, Model } from 'sequelize';
 import bcrypt from 'bcrypt';
-import connection from '../connection/connection.js';
+import sequelize from '../connection/connection.js';
 
 class User extends Model {
-  async validPassword(password) {
-    return bcrypt.compare(password, this.pass);
-  }
+    async validPassword(password) {
+        return bcrypt.compare(password, this.password); // Cambia this.pass a this.password
+    }
 }
 
 User.init(
-  {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+    {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false,
+            validate: { isEmail: true }
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-      validate: { isEmail: true }
-    },
-    pass: {
-      type: DataTypes.STRING,
-      allowNull: false
+    {
+        sequelize,
+        modelName: 'User',
+        tableName: 'users',
+        hooks: {
+            beforeCreate: async (user) => {
+                const salt = await bcrypt.genSalt(10);
+                user.password = await bcrypt.hash(user.password, salt);
+            }
+        }
     }
-  },
-  {
-    sequelize:connection,
-    modelName: 'User',
-    hooks: {
-      beforeCreate: async (user) => {
-        user.pass = await bcrypt.hash(user.pass, 10);
-      }
-    }
-  }
 );
 
 export default User;

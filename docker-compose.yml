@@ -1,0 +1,14 @@
+services:
+  mysql-expense-db:
+    image: mysql:8.0
+    container_name: mysql-expense-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: expense_db
+    ports:
+      - "8889:3306"
+    volumes:
+      - mysql-data-expense-api:/var/lib/mysql
+
+volumes:
+  mysql-data-expense-api:
