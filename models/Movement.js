@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import connection from '../connection/connection.js';
 
-class Expense extends Model {}
+class Movement extends Model {}
 
-Expense.init(
+Movement.init(
     {
         id: {
             type: DataTypes.UUID,
@@ -42,10 +42,10 @@ Expense.init(
     },
     {
         sequelize:connection,
-        modelName: 'Expense',
+        modelName: 'Movement',
         tableName: 'expenses'
     },
 );
 
 
-export default Expense;
+export default Movement;
