@@ -2,10 +2,13 @@ import User from './User.js';
 import Expense from "./Expense.js";
 import Category from "./Category.js";
 
-User.hasMany(Expense, { foreignKey: 'UserId' });
-Expense.belongsTo(User, { foreignKey: 'UserId' });
+User.hasMany(Expense, { foreignKey: 'userId' });
+User.hasMany(Category, { foreignKey: 'userId' });
 
-Category.hasMany(Expense, { foreignKey: 'CategoryId' });
-Expense.belongsTo(Category, { foreignKey: 'CategoryId' });
+Expense.belongsTo(User, { foreignKey: 'userId' });
+Expense.belongsTo(Category, { foreignKey: 'categoryId' });
+
+Category.hasMany(Expense, { foreignKey: 'categoryId' });
+Category.belongsTo(User, { foreignKey: 'userId' });
 
 export { User, Expense, Category };
