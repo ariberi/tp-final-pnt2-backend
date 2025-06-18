@@ -10,7 +10,7 @@ class AuthService {
         return { user, token };
     }
 
-    async login({ email, password }) {
+    async login(email, password) {
         const user = await User.findOne({ where: { email } });
         if (!user) throw new Error('User not found');
         const valid = await user.validPassword(password);
@@ -19,9 +19,15 @@ class AuthService {
         return { user, token };
     }
 
-
     generateToken(userId) {
         return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' });
+    }
+
+    async me(token) {
+
+
+
+
     }
 }
 

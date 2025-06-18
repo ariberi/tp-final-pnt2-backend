@@ -1,11 +1,11 @@
-import movementService from "../services/movementService.js";
+import movementService from "../services/MovementService.js";
 
 export const createMovement = async (req, res, next) => {
   console.log("[CONTROLLER] createMovement → body:", req.body);
   try {
-    const expense = await movementService.create(req.userId, req.body);
+    console.log(req.userId);
+    const expense = await movementService.create(req.body.userId, req.body);
     console.log("[CONTROLLER] createMovement ✔ id:", expense.id);
-
     res.status(201).json(expense);
   } catch (err) {
     console.log("[CONTROLLER] createMovement ✖", err.message);

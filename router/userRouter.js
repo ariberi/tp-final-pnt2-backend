@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { updateUser } from '../controllers/UserController.js';
+import {getUsers, updateUser} from '../controllers/UserController.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
-router.put('/', authMiddleware, updateUser);
+router.use(authMiddleware);
+router.put('/', updateUser);
+// router.get('/', getUsers);
 
 export default router;

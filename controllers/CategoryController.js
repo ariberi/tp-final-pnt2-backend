@@ -12,7 +12,7 @@ export const createCategory = async (req, res, next) => {
   }
 };
 
-export const getCategories = async (_req, res, next) => {
+export const getCategories = async (req, res, next) => {
   console.log("[CONTROLLER] getCategories →");
   try {
     const list = await categoryService.findAll();

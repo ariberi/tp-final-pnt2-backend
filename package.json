@@ -16,6 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.4",
     "process": "^0.11.10",
-    "sequelize": "^6.37.1"
+    "sequelize": "^6.37.1",
+    "cookie-parser": "^1.4.7"
   }
 }
