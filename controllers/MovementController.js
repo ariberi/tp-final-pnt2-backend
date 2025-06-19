@@ -2,9 +2,18 @@ import movementService from "../services/MovementService.js";
 
 export const createMovement = async (req, res, next) => {
   console.log("[CONTROLLER] createMovement → body:", req.body);
+  const { description, amount, date, type, categoryId } = req.body;
+  const { userId } = req;
+  console.log(req.userId);
   try {
-    console.log(req.userId);
-    const expense = await movementService.create(req.body.userId, req.body);
+    const expense = await movementService.create(
+      description,
+      amount,
+      date,
+      type,
+      categoryId,
+      userId
+    );
     console.log("[CONTROLLER] createMovement ✔ id:", expense.id);
     res.status(201).json(expense);
   } catch (err) {
@@ -36,7 +45,10 @@ export const getMovementsByCategory = async (req, res, next) => {
       req.userId,
       categoryId
     );
-    console.log("[CONTROLLER] getMovementsByCategory ✔ count:", expenses.length);
+    console.log(
+      "[CONTROLLER] getMovementsByCategory ✔ count:",
+      expenses.length
+    );
 
     res.json(expenses);
   } catch (err) {
@@ -51,10 +63,20 @@ export const updateMovement = async (req, res, next) => {
 
   try {
     const { id } = req.params;
-    const expense = await movementService.update(id, req.body);
+    const { description, amount, date, type, categoryId } = req.body;
+    const { userId } = req;
+    const movement = await movementService.update(
+      id,
+      description,
+      amount,
+      date,
+      type,
+      categoryId,
+      userId
+    );
     console.log("[CONTROLLER] updateMovement ✔ info:", JSON.stringify(expense));
 
-    res.json(expense);
+    res.json(movement);
   } catch (err) {
     console.log("[CONTROLLER] updateMovement ✖", err.message);
 
@@ -67,7 +89,9 @@ export const deleteMovement = async (req, res, next) => {
 
   try {
     const { id } = req.params;
-    await movementService.delete(id);
+    const { userId } = req;
+
+    await movementService.delete(id, userId);
     console.log("[CONTROLLER] deleteMovement ✔ id:", id);
 
     res.status(204).end();

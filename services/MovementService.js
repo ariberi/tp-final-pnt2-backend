@@ -1,36 +1,34 @@
-import { Movement, Category } from '../models/index.js';
-
+import { Movement, Category } from "../models/index.js";
+import CategoryService from "./CategoryService.js";
 
 class MovementService {
-
-  async create(userId, data) {
-
-    const {description, amount, date, type, categoryId} = data;
-
-    if (!description || !amount || !type || !categoryId) {
-      throw new Error('Missing required fields: description, amount, type, or categoryId');
+  async create(description, amount, date, type, categoryId, userId) {
+    if (!description || !amount || !type || !categoryId || !userId) {
+      throw new Error(
+        "Missing required fields: description, amount, type, or categoryId"
+      );
     }
 
-    if (!['income', 'expense'].includes(type)) {
+    if (!["income", "expense"].includes(type)) {
       throw new Error('Invalid type. Must be "income" or "expense".');
     }
 
-    const category = await Category.findByPk(categoryId);
-    if (!category) {
-      throw new Error('Category not found'); // o que pueda crearla en el momento?
-    }
+    const category = await CategoryService.findById(categoryId, userId);
+    if (!category) throw new Error("Category not found");
 
-    const newMovement =
-        await Movement.create( {
-          description,
-          amount,
-          date: date ?? new Date(),
-          type,
-          categoryId,
-          userId
+    const newMovement = await Movement.create({
+      description,
+      amount,
+      date: date ?? new Date(),
+      type,
+      categoryId,
+      userId,
     });
 
-    return Movement.findByPk(newMovement.id, { include: [Category] });
+    return Movement.findByPk(newMovement.id, {
+      include: [Category],
+      where: { userId },
+    });
   }
 
   async findAll(userId) {
@@ -38,16 +36,24 @@ class MovementService {
   }
 
   async findByCategory(userId, categoryId) {
-    return Movement.findAll({ where: { UserId: userId, CategoryId: categoryId }, include: [Category] });
+    return Movement.findAll({
+      where: { UserId: userId, CategoryId: categoryId },
+      include: [Category],
+    });
   }
 
-  async update(expenseId, data) {
-    await Movement.update(data, { where: { id: expenseId } });
-    return Movement.findByPk(expenseId, { include: [Category] });
+  async update(movementId, description, amount, date, type, categoryId, userId) {
+    if (!description || !amount || !type || !categoryId || !userId) {
+      throw new Error(
+        "Missing required fields: description, amount, type, or categoryId"
+      );
+    }
+    await Movement.update(data, { where: { id: movementId, userId } });
+    return Movement.findByPk(movementId, { include: [Category] });
   }
 
-  async delete(expenseId) {
-    return Movement.destroy({ where: { id: expenseId } });
+  async delete(movementId, userId) {
+    return Movement.destroy({ where: { id: movementId , userId} });
   }
 }
 
