@@ -3,8 +3,8 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "ariel@ariel.ariel",
-  "name": "Prueba",
+  "email": "PROBANDO@GMAIL.COM",
+  "name": "PROBANDO",
   "password": "123456789"
 }
 
@@ -20,7 +20,6 @@ Content-Type: application/json
 ### Crear una nueva categoría
 POST http://localhost:3000/api/categories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzhkYmQwZC1hNDgwLTRkYWItYmQ5Yi01YzJmNGIzMmNjZmYiLCJpYXQiOjE3NTAxOTY5NTQsImV4cCI6MTc1MDgwMTc1NH0.2Oj5GR5PA4HxUUmz0cXtK5YR9HTXXWNj_Vnv9Jn9crg
 
 {
   "name": "Prueba",
@@ -30,7 +29,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzhkY
 
 ### Crear movimiento de ingreso
 POST http://localhost:3000/api/movement
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzhkYmQwZC1hNDgwLTRkYWItYmQ5Yi01YzJmNGIzMmNjZmYiLCJpYXQiOjE3NTAxOTY5NTQsImV4cCI6MTc1MDgwMTc1NH0.2Oj5GR5PA4HxUUmz0cXtK5YR9HTXXWNj_Vnv9Jn9crg
 Content-Type: application/json
 
 {
@@ -38,8 +36,7 @@ Content-Type: application/json
   "amount": 120000,
   "type": "expense",
   "categoryId": "a75cb2b6-90ec-4779-bd03-798fc86d1887",
-  "date": "2025-06-17",
-  "userId": "e328964a-f0cb-48da-bc6a-8eddefc6b163"
+  "date": "2025-06-17"
 }
 
 
@@ -48,24 +45,18 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "ariel@ariel.com",
-    "password": "1234"
+    "email": "ariel@ariel.ariel",
+    "password": "123456789"
 
 }
 
-### Obtener todos los usuarios
-GET http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
 ### Obtener todas las categorías
 GET http://localhost:3000/api/categories
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
 ### Obtener todos los gastos
 GET http://localhost:3000/api/movement
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
 ###
 GET http://localhost:3000/api/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
