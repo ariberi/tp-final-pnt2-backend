@@ -3,8 +3,8 @@ import authService from '../services/AuthService.js';
 export const register = async (req, res, next) => {
     console.log('[CONTROLLER] register → body:', req.body);
     try {
-        const {name, pass, email} = req.body;
-        const { user, token } = await authService.register({name,password:pass, email});
+        const {name, email, password} = req.body;
+        const { user, token } = await authService.register({name,email, password});
         console.log('[CONTROLLER] register ✔ userId:', user.id);
         res.cookie("token", token); // no el token? TODO: revisar
         res.status(201).json({ user, token });
