@@ -9,8 +9,12 @@
     "start": "docker-compose up -d && node --env-file .env index.js node .s",
     "stop": "docker-compose down"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",

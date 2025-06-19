@@ -1,21 +1,37 @@
-import { Category } from '../models/index.js';
-
+import { Category } from "../models/index.js";
 
 class CategoryService {
-  create(data) {
-    return Category.create(data);
+  create(nameCategory, userId) {
+    if (!nameCategory) throw new Error("nameCategory empty");
+    if (!userId) throw new Error("userId empty");
+    return Category.create({
+      name: nameCategory,
+      userId: userId,
+    });
   }
+
   findAll() {
     return Category.findAll();
   }
-  update(id, data) {
-    return Category.update(data, { where: { id } });
+  findAllByUserId(userId) {
+    if (!userId) throw new Error("userId empty");
+    return Category.findAll({
+      where: {
+        userId: userId,
+      },
+    });
   }
-  async findById(id) {
-    return Category.findByPk(id);
+
+  update(id, name, userId) {
+    return Category.update(name, { where: { id, userId } });
   }
-  delete(id) {
-    return Category.destroy({ where: { id } });
+
+  async findById(id, userId) {
+    return Category.findByPk(id, { where: { userId: userId } });
+  }
+
+  delete(id, userId) {
+    return Category.destroy({ where: { id, userId } });
   }
 }
 

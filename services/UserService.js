@@ -1,4 +1,4 @@
-import { User } from '../models/index.js';
+import {User} from '../models/index.js';
 
 class UserService {
 
@@ -6,6 +6,11 @@ class UserService {
     await User.update(data, { where: { id } });
     return User.findByPk(id);
   }
+
+  findAll() {
+    return User.findAll();
+  }
+
 }
 
 export default new UserService();

@@ -23,6 +23,10 @@ Movement.init(
             type: DataTypes.DATEONLY,
             allowNull: false
         },
+        type: {
+            type: DataTypes.ENUM('income', 'expense'),
+            allowNull: false
+        },
         categoryId: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -43,7 +47,7 @@ Movement.init(
     {
         sequelize:connection,
         modelName: 'Movement',
-        tableName: 'expenses'
+        tableName: 'movements',
     },
 );
 

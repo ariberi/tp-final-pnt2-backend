@@ -3,7 +3,7 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "prueba@prueba.prueba",
+  "email": "ariel@ariel.ariel",
   "name": "Prueba",
   "password": "123456789"
 }
@@ -13,34 +13,33 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "prueba@prueba.prueba",
+  "email": "test@test.test",
   "password": "123456789"
 }
-
 
 ### Crear una nueva categoría
 POST http://localhost:3000/api/categories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTk2MWJjYy0wMmI3LTRmODYtYTc5My03MDMxMzYzNmU0ZmYiLCJpYXQiOjE3NTAxMjA5NTUsImV4cCI6MTc1MDcyNTc1NX0.WqeYDE1t8oewCtJRfscwutZFAQ4fnR416mlA4j_kijE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzhkYmQwZC1hNDgwLTRkYWItYmQ5Yi01YzJmNGIzMmNjZmYiLCJpYXQiOjE3NTAxOTY5NTQsImV4cCI6MTc1MDgwMTc1NH0.2Oj5GR5PA4HxUUmz0cXtK5YR9HTXXWNj_Vnv9Jn9crg
 
 {
-  "name": "Tecnología",
-  "userId": "e328964a-f0cb-48da-bc6a-8eddefc6b163"
+  "name": "Prueba",
+  "userId": "6a961bcc-02b7-4f86-a793-70313636e4ff"
 }
 
 
-
-### Agregar un nuevo gasto
-POST http://localhost:3000/api/expenses
+### Crear movimiento de ingreso
+POST http://localhost:3000/api/movement
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzhkYmQwZC1hNDgwLTRkYWItYmQ5Yi01YzJmNGIzMmNjZmYiLCJpYXQiOjE3NTAxOTY5NTQsImV4cCI6MTc1MDgwMTc1NH0.2Oj5GR5PA4HxUUmz0cXtK5YR9HTXXWNj_Vnv9Jn9crg
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTk2MWJjYy0wMmI3LTRmODYtYTc5My03MDMxMzYzNmU0ZmYiLCJpYXQiOjE3NTAxMjA5NTUsImV4cCI6MTc1MDcyNTc1NX0.WqeYDE1t8oewCtJRfscwutZFAQ4fnR416mlA4j_kijE
 
 {
-  "amount": 2500,
-  "description": "Carga de sube",
-  "categoryId": "39ba18e0-1942-4389-b37a-e9f07bd63717",
-  "userId": "6a961bcc-02b7-4f86-a793-70313636e4ff",
-  "date": "2025-02-10"
+  "description": "Carga de prueba",
+  "amount": 120000,
+  "type": "expense",
+  "categoryId": "a75cb2b6-90ec-4779-bd03-798fc86d1887",
+  "date": "2025-06-17",
+  "userId": "e328964a-f0cb-48da-bc6a-8eddefc6b163"
 }
 
 
@@ -49,20 +48,24 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "prueba@prueba.com",
+    "email": "ariel@ariel.com",
     "password": "1234"
 
 }
 
 ### Obtener todos los usuarios
-GET http://localhost:3000/api/users
-
+GET http://localhost:3000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
 ### Obtener todas las categorías
 GET http://localhost:3000/api/categories
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 
 ### Obtener todos los gastos
-GET http://localhost:3000/api/expenses
+GET http://localhost:3000/api/movement
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
+
+###
+GET http://localhost:3000/api/auth/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjAsImlhdCI6MTc1MDExNjAwNywiZXhwIjoxNzUwNzIwODA3fQ.rVslCWEF4jUOFId_CIDs7h6BHcY7q99y1k6HOeSfaSk
 

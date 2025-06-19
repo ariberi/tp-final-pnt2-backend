@@ -4,7 +4,7 @@ import sequelize from '../connection/connection.js';
 
 class User extends Model {
     async validPassword(password) {
-        return bcrypt.compare(password, this.password); // Cambia this.pass a this.password
+        return bcrypt.compare(password, this.password);
     }
 }
 
