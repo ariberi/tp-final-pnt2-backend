@@ -13,7 +13,7 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test@test.test",
+  "email": "PROBANDO@GMAIL.COM",
   "password": "123456789"
 }
 
@@ -22,8 +22,7 @@ POST http://localhost:3000/api/categories
 Content-Type: application/json
 
 {
-  "name": "Prueba",
-  "userId": "6a961bcc-02b7-4f86-a793-70313636e4ff"
+  "name": "PROBANDO"
 }
 
 
@@ -32,11 +31,10 @@ POST http://localhost:3000/api/movement
 Content-Type: application/json
 
 {
-  "description": "Carga de prueba",
-  "amount": 120000,
-  "type": "expense",
-  "categoryId": "a75cb2b6-90ec-4779-bd03-798fc86d1887",
-  "date": "2025-06-17"
+  "description": "PROBANDO",
+  "amount": 555,
+  "type": "income",
+  "categoryId": "7c2c704d-9b4a-48db-a47a-36d9515c6377"
 }
 
 
