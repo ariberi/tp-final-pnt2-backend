@@ -1,18 +1,17 @@
 import { Category } from "../models/index.js";
 
 class CategoryService {
+
   create(nameCategory, userId) {
     if (!nameCategory) throw new Error("nameCategory empty");
     if (!userId) throw new Error("userId empty");
+    nameCategory = nameCategory.trim().toLowerCase();
     return Category.create({
       name: nameCategory,
       userId: userId,
     });
   }
 
-  findAll() {
-    return Category.findAll();
-  }
   findAllByUserId(userId) {
     if (!userId) throw new Error("userId empty");
     return Category.findAll({
@@ -22,15 +21,20 @@ class CategoryService {
     });
   }
 
-  update(id, name, userId) {
-    return Category.update(name, { where: { id, userId } });
+  update({id, name, userId}) {
+    if (!id) throw new Error("id empty");
+    if (!name) throw new Error("name empty");
+    if (!userId) throw new Error("userId empty");
+
+
+    return Category.update({ name }, { where: { id, userId } });
   }
 
-  async findById(id, userId) {
-    return Category.findByPk(id, { where: { userId: userId } });
+  async findById({id, userId}) {
+    return Category.findOne({ where: { id, userId } });
   }
 
-  delete(id, userId) {
+  delete({id,userId}) {
     return Category.destroy({ where: { id, userId } });
   }
 }

@@ -16,11 +16,11 @@ const connection = new Sequelize(
 const extracted = async () => {
     try {
         await connection.authenticate();
-        console.log('Conexión a la base de datos exitosa.');
+        console.log('✅ Conexión a la base de datos exitosa.');
     } catch (error) {
-        console.error('Error al conectarse a la base de datos:', error);
+        console.error('❌ Error al conectarse a la base de datos:', error);
     }
-}
+};
 await extracted();
 
 export default connection;
