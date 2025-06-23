@@ -17,7 +17,6 @@ class AuthService {
       throw new Error("Password must be between 6 and 20 characters long.");
     }
 
-    // Validación de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         throw new Error("Invalid email format.");
@@ -43,7 +42,6 @@ class AuthService {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      // Mensaje genérico para evitar enumeración de usuarios
       throw new Error("Invalid email or password.");
     }
 

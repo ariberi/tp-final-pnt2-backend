@@ -1,0 +1,24 @@
+### Actualizar nombre del usuario logueado
+PATCH http://localhost:3000/api/user
+Content-Type: application/json
+
+{
+  "name": "Ariel actualizado"
+}
+
+### Actualizar email
+PATCH http://localhost:3000/api/user
+Content-Type: application/json
+
+{
+  "email": "nuevoemailariel@example.com"
+}
+
+### Actualizar ambos campos
+PATCH http://localhost:3000/api/user
+Content-Type: application/json
+
+{
+  "name": "Nuevo Nombre",
+  "email": "nuevo@example.com"
+}
