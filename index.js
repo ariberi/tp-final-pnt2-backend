@@ -10,10 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Rutas
 app.use('/api', router);
 
-// Manejo de errores
 app.use((err, req, res, next) => {
   console.error('[index.js]', err.stack);
   res.status(err.status || 500).json({
