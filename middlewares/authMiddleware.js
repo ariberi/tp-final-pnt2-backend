@@ -15,7 +15,7 @@ export const authMiddleware = (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    req.userId = payload.userId; // payload.userId; ?? TODO verificar esto
+    req.userId = payload.userId;
     next();
   } catch {
     res.status(401).json({ error: 'Invalid token' });

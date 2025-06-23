@@ -1,0 +1,21 @@
+### Obtener todas las categorías del usuario logueado
+GET http://localhost:3000/api/categories
+
+### Crear una nueva categoría para el usuario logueado
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "name": "supermercado"
+}
+
+### Actualizar una categoría del usuario logueado
+PUT http://localhost:3000/api/categories/2fabd958-119e-4791-ba06-5f7e380ef0b3
+Content-Type: application/json
+
+{
+  "name": "Categoría Actualizada"
+}
+
+### Eliminar una categoría del usuario logueado
+DELETE http://localhost:3000/api/categories/80985e52-5600-4716-9c1c-cb9cfb106afa

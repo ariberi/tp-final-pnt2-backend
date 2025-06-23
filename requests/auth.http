@@ -1,0 +1,24 @@
+### Registro de usuario
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Prueba",
+  "email": "prueba@mailcom",
+  "password": "123456789"
+}
+
+### Login usuario
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ariel@mail.com",
+  "password": "123456"
+}
+
+### Obtener datos del usuario logueado
+GET http://localhost:3000/api/auth/me
+
+### Logout usuario (borrar cookie)
+POST http://localhost:3000/api/auth/logout

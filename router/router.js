@@ -11,5 +11,7 @@ router.use('/user', userRouter);
 router.use('/movement', movementRouter);
 router.use('/categories', categoryRouter);
 
+console.log("✅ Router index cargado");
+
 
 export default router;

@@ -1,8 +1,8 @@
 import express from 'express';
-import router from './router/router.js';
 import connection from './connection/connection.js';
+import router from './router/router.js';
+import cookieParser from 'cookie-parser';
 import { SERVER_PORT } from './config/config.js';
-import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -10,20 +10,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
+// Rutas
 app.use('/api', router);
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  const statusCode = err.status || 500;
-  const message = err.message || "Error interno del servidor";
 
-  res.status(statusCode).json({
+// Manejo de errores
+app.use((err, req, res, next) => {
+  console.error('[index.js]', err.stack);
+  res.status(err.status || 500).json({
     success: false,
-    error: message
+    error: err.message || 'Error interno del servidor',
   });
 });
+
+
 await connection.sync({force:false})
 
 app.listen(SERVER_PORT, () => {
-  console.log(`🚀 ~ app.listen ~ ${SERVER_PORT}`);
+  console.log(`🚀 Servidor escuchando en http://localhost:${SERVER_PORT}`);
 });
