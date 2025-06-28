@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "Prueba",
-  "email": "prueba@mailcom",
+  "email": "prueba@mail.com",
   "password": "123456789"
 }
 
@@ -13,8 +13,8 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "ariel@mail.com",
-  "password": "123456"
+  "email": "prueba@mail.com",
+  "password": "123456789"
 }
 
 ### Obtener datos del usuario logueado

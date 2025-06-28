@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "docker-compose up -d && node --env-file .env --watch .",
+    "docker": "docker-compose up -d",
+    "dev": "node --env-file .env --watch .",
     "start": "node --env-file .env index.js"
   },
   "engines": {
@@ -14,6 +15,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
