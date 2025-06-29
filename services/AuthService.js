@@ -5,7 +5,7 @@ import { JWT_SECRET } from "../config/config.js";
 class AuthService {
 
   generateToken(userId) {
-    return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "30m" });
+    return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "2h" });
   }
 
   async register({ name, email, password }) {
