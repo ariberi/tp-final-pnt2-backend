@@ -7,6 +7,9 @@ import AuthController from '../controllers/AuthController.js'
 import CategoryService from '../services/CategoryService.js';
 import CategoryController from '../controllers/CategoryController.js'
 
+import MovementService from '../services/MovementService.js';
+import MovementController from '../controllers/MovementController.js';
+
 // INYECCION DE DEPENDENCIA USERS
 const userService = new UserService();
 const userController = UserController(userService);
@@ -19,8 +22,13 @@ const authController = AuthController(authService);
 const categoryService = new CategoryService();
 const categoryController = CategoryController(categoryService);
 
+// INYECCION DE DEPENDENCIAS MOVEMENT
+const movementService = new MovementService();
+const movementController = MovementController(movementService);
+
 export default {
   userController,
   authController,
-  categoryController
+  categoryController,
+  movementController
 };
