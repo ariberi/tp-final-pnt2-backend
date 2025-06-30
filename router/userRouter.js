@@ -8,8 +8,8 @@ const router = Router();
 // router.use(authMiddleware);
 // router.patch('/', updateUser);
 router.get('/', userController.getAllUsers);
-router.get('/', userController.getUser);
+router.get('/:id', userController.getUser);
 router.post('/', userController.createUser);
-router.delete('/', userController.deleteUser);
+router.delete('/:id', userController.deleteUser);
 
 export default router;

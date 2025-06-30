@@ -11,8 +11,8 @@ const router = Router();
 // router.post('/login', login);
 // router.post('/logout', logout);
 // router.get('/me',authMiddleware, me);
-router.post('./login', authController.login);
-router.post('./register', authController.register);
+router.post('/login', authController.login);
+router.post('/register', authController.register);
 router.post('/logout', authController.logout);
 router.get('/me', authMiddleware, authController.me); 
 
