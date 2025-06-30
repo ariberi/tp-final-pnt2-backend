@@ -9,7 +9,8 @@ import { Router } from 'express';
 //     getAllExpenses
 // } from '../controllers/MovementController.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
-import { movementController } from '../container/container.js'
+import container from '../container/container.js';
+const { movementController } = container;
 
 const router = Router();
 

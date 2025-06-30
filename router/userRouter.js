@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { userController } from '../container/container.js'
+import container from '../container/container.js';
+const { userController } = container;
 // import {updateUser} from '../controllers/UserController.js';
 // import { authMiddleware } from '../middlewares/authMiddleware.js';
 

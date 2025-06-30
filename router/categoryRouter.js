@@ -3,7 +3,11 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
 // import {
 //   createCategory, getCategories, updateCategory, deleteCategory
 // } from '../controllers/CategoryController.js';
-import { categoryController } from '../container/container.js'
+import container from '../container/container.js';
+const { categoryController } = container;
+
+
+
 
 const router = Router();
 

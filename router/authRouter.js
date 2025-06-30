@@ -1,7 +1,9 @@
 import { Router } from 'express';
 // import { register, login, logout, me} from '../controllers/AuthController.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
-import { authController } from '../container/container'
+import container from '../container/container.js';
+const { authController } = container;
+
 
 
 

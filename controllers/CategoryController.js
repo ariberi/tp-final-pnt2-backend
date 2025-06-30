@@ -66,6 +66,21 @@ export default function CategoryController(categoryService) {
         console.log("[CONTROLLER] deleteCategory ✖", err.message);
         next(err);
       }
-    }
+    },
+
+    getCategoryById: async (req, res, next) => {
+      const { id } = req.params;
+      const { userId } = req;
+      console.log("[CONTROLLER] getCategoryById → id:", id);
+
+      try {
+        const category = await categoryService.findById({ id, userId });
+        if (!category) return res.status(404).json({ error: "Category not found" });
+        res.json(category);
+      } catch (err) {
+        console.log("[CONTROLLER] getCategoryById ✖", err.message);
+        next(err);
+      }
+    },
   };
 }
