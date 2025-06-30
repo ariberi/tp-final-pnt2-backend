@@ -1,13 +1,16 @@
 import movementService from "../services/MovementService.js";
 
+// Crear movimiento
 export const createMovement = async (req, res, next) => {
-
     console.log("[CONTROLLER] createMovement → body:", req.body);
     const { description, amount, date, type, categoryId } = req.body;
     const { userId } = req;
-    console.log(req.userId);
 
     try {
+        if (!description || !amount || !date || !type || !categoryId) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
         const movement = await movementService.create(
             description,
             amount,
@@ -19,93 +22,101 @@ export const createMovement = async (req, res, next) => {
         console.log("[CONTROLLER] createMovement ✔ id:", movement.id);
         res.status(201).json(movement);
     } catch (err) {
-        console.log("[CONTROLLER] createMovement ✖", err.message);
+        console.error("[CONTROLLER] createMovement ✖", err.message);
         next(err);
     }
 };
 
+// Obtener todos los movimientos del usuario
 export const getMovements = async (req, res, next) => {
-
-    console.log("[CONTROLLER] getMovements → userId:", req.userId);
+    const { userId } = req;
+    console.log("[CONTROLLER] getMovements → userId:", userId);
 
     try {
-        const movements = await movementService.findAllByUserId(req.userId);
+        const movements = await movementService.findAllByUserId(userId);
         if (!movements || movements.length === 0) {
-            console.log("[CONTROLLER] getMovements ✖ No movements found for userId:", req.userId);
+            console.log("[CONTROLLER] getMovements ✖ No movements found");
             return res.status(404).json({ message: "No movements found" });
         }
         console.log("[CONTROLLER] getMovements ✔ count:", movements.length);
-        res.json(movements);
+        res.status(200).json(movements);
     } catch (err) {
-        console.log("[CONTROLLER] getMovements ✖", err.message);
-
+        console.error("[CONTROLLER] getMovements ✖", err.message);
         next(err);
     }
 };
 
+// Obtener movimientos por categoría
 export const getMovementsByCategory = async (req, res, next) => {
-
-    console.log("[CONTROLLER] getMovementsByCategory → userId:", req.userId);
+    const { categoryId } = req.params;
+    const { userId } = req;
+    console.log("[CONTROLLER] getMovementsByCategory → userId:", userId, "categoryId:", categoryId);
 
     try {
-        const { categoryId } = req.params;
-        const movements = await movementService.findByCategory({userId : req.userId, categoryId});
-        if (!movements || movements?.length === 0) {
-            console.log("[CONTROLLER] getMovementsByCategory ✖ No movements found for category:", categoryId);
+        const movements = await movementService.findByCategory({ userId, categoryId });
+        if (!movements || movements.length === 0) {
+            console.log("[CONTROLLER] getMovementsByCategory ✖ No movements for category");
             return res.status(404).json({ message: "No movements found for this category." });
         }
         console.log("[CONTROLLER] getMovementsByCategory ✔ count:", movements.length);
-        res.json(movements);
+        res.status(200).json(movements);
     } catch (err) {
-        console.log("[CONTROLLER] getMovementsByCategory ✖", err.message);
+        console.error("[CONTROLLER] getMovementsByCategory ✖", err.message);
         next(err);
     }
 };
 
+// Obtener todos los ingresos
 export const getAllIncomes = async (req, res, next) => {
-
-    console.log("[CONTROLLER] getAllIncomes → userId:", req.userId);
+    const { userId } = req;
+    console.log("[CONTROLLER] getAllIncomes → userId:", userId);
 
     try {
-        const incomes = await movementService.getAllIncomes(req.userId);
+        const incomes = await movementService.getAllIncomes(userId);
         if (!incomes || incomes.length === 0) {
-            console.log("[CONTROLLER] getAllIncomes ✖ No incomes found for userId:", req.userId);
+            console.log("[CONTROLLER] getAllIncomes ✖ No incomes found");
             return res.status(404).json({ message: "No incomes found" });
         }
         console.log("[CONTROLLER] getAllIncomes ✔ count:", incomes.length);
-        res.json(incomes);
+        res.status(200).json(incomes);
     } catch (err) {
-        console.log("[CONTROLLER] getAllIncomes ✖", err.message);
+        console.error("[CONTROLLER] getAllIncomes ✖", err.message);
         next(err);
     }
-}
+};
 
+// Obtener todos los gastos
 export const getAllExpenses = async (req, res, next) => {
-
-    console.log("[CONTROLLER] getAllExpenses → userId:", req.userId);
+    const { userId } = req;
+    console.log("[CONTROLLER] getAllExpenses → userId:", userId);
 
     try {
-        const expenses = await movementService.getAllExpenses(req.userId);
+        const expenses = await movementService.getAllExpenses(userId);
         if (!expenses || expenses.length === 0) {
-            console.log("[CONTROLLER] getAllExpenses ✖ No expenses found for userId:", req.userId);
+            console.log("[CONTROLLER] getAllExpenses ✖ No expenses found");
             return res.status(404).json({ message: "No expenses found" });
         }
         console.log("[CONTROLLER] getAllExpenses ✔ count:", expenses.length);
-        res.json(expenses);
+        res.status(200).json(expenses);
     } catch (err) {
-        console.log("[CONTROLLER] getAllExpenses ✖", err.message);
+        console.error("[CONTROLLER] getAllExpenses ✖", err.message);
         next(err);
     }
-}
+};
 
+// Actualizar movimiento
 export const updateMovement = async (req, res, next) => {
+    const { id } = req.params;
+    const { description, amount, date, type, categoryId } = req.body;
+    const { userId } = req;
 
-    console.log("[CONTROLLER] updateMovement → userId:", req.userId);
+    console.log("[CONTROLLER] updateMovement → id:", id, "body:", req.body);
 
     try {
-        const { id } = req.params;
-        const { description, amount, date, type, categoryId } = req.body;
-        const { userId } = req;
+        if (!description || !amount || !date || !type || !categoryId) {
+            return res.status(400).json({ error: "All fields are required for update" });
+        }
+
         const movement = await movementService.update(
             id,
             description,
@@ -115,29 +126,27 @@ export const updateMovement = async (req, res, next) => {
             categoryId,
             userId
         );
-        console.log("[CONTROLLER] updateMovement ✔ info:", JSON.stringify(movement));
-
-        res.json(movement);
+        console.log("[CONTROLLER] updateMovement ✔", JSON.stringify(movement));
+        res.status(200).json(movement);
     } catch (err) {
-        console.log("[CONTROLLER] updateMovement ✖", err.message);
-
+        console.error("[CONTROLLER] updateMovement ✖", err.message);
         next(err);
     }
 };
 
+// Eliminar movimiento
 export const deleteMovement = async (req, res, next) => {
+    const { id } = req.params;
+    const { userId } = req;
 
-    console.log("[CONTROLLER] deleteMovement → userId:", req.userId);
+    console.log("[CONTROLLER] deleteMovement → id:", id, "userId:", userId);
 
     try {
-        const { id } = req.params;
-        const { userId } = req;
-
-        await movementService.delete({movementId: id, userId});
+        await movementService.delete({ movementId: id, userId });
         console.log("[CONTROLLER] deleteMovement ✔ id:", id);
-
         res.status(204).end();
     } catch (err) {
+        console.error("[CONTROLLER] deleteMovement ✖", err.message);
         next(err);
     }
 };

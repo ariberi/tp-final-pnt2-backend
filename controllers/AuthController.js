@@ -10,6 +10,7 @@ export const register = async (req, res, next) => {
         res.status(201).json({ user, token });
     } catch (err) {
         console.log('[CONTROLLER] register ✖', err.message);
+        res.status(err.status || 500).json({ error: err.message });
         next(err);
     }
 };
@@ -24,6 +25,7 @@ export const login = async (req, res, next) => {
         res.json({ user, token });
     } catch (err) {
         console.log('[CONTROLLER] login ✖', err.message);
+        res.status(err.status || 500).json({ error: err.message });
         next(err);
     }
 };
