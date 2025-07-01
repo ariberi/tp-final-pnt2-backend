@@ -1,5 +1,7 @@
 import {Category, Movement} from "../models/index.js";
-import categoryService from "./CategoryService.js";
+import CategoryService from "./CategoryService.js";
+
+const categoryService = new CategoryService();
 
 class MovementService {
 
@@ -109,4 +111,4 @@ class MovementService {
 
 }
 
-export default new MovementService();
+export default MovementService;

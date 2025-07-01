@@ -1,35 +1,32 @@
-import userService from '../services/UserService.js';
+import UserService from '../services/UserService.js';
 import UserController from '../controllers/UserController.js';
 
-import authService from '../services/AuthService.js';
+import AuthService from '../services/AuthService.js';
 import AuthController from '../controllers/AuthController.js'
 
-import categoryService from '../services/CategoryService.js';
+import CategoryService from '../services/CategoryService.js';
 import CategoryController from '../controllers/CategoryController.js'
 
-import movementService from '../services/MovementService.js';
+import MovementService from '../services/MovementService.js';
 import MovementController from '../controllers/MovementController.js';
 
 // INYECCION DE DEPENDENCIA USERS
-const userController = UserController(userService);
+const userService = new UserService();
+export const userController = new UserController(userService);
 
 // INYECCION DE DEPENDENCIAS AUTH
-const authController = AuthController(authService);
+const authService = new AuthService();
+export const authController = new AuthController(authService);
 
 // INYECCION DE DEPENDENCIAS CATEGORY
-const categoryController = CategoryController(categoryService);
-console.log("DEBUG:", {
-  getAllCategories: categoryController.getAllCategories,
-  createCategory: categoryController.createCategory
-});
+const categoryService = new CategoryService();
+export const categoryController = new CategoryController(categoryService);
 
+// console.log("DEBUG:", {
+//   getAllCategories: categoryController.getAllCategories,
+//   createCategory: categoryController.createCategory
+// });
 
 // INYECCION DE DEPENDENCIAS MOVEMENT
-const movementController = MovementController(movementService);
-
-export default {
-  userController,
-  authController,
-  categoryController,
-  movementController
-};
+const movementService = new MovementService();
+export const movementController = new MovementController(movementService);

@@ -11,7 +11,7 @@ PATCH http://localhost:3000/api/user
 Content-Type: application/json
 
 {
-  "email": "nuevoemailariel@example.com"
+  "email": "nuevoemail@example.com"
 }
 
 ### Actualizar ambos campos
