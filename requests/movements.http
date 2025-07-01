@@ -2,13 +2,13 @@
 GET http://localhost:3000/api/movement
 
 ### Obtener un movimiento del usuario logueado por categoría
-GET http://localhost:3000/api/movement/category/5f692ef2-d1a4-4cf2-994c-831f3c8d311b
+GET http://localhost:3000/api/movement/category/03e1b6b7-47d1-4c66-9d64-858fdc02f9fc
 
 ### Obtener todos los ingresos del usuario logueado
-GET http://localhost:3000/api/movement/type/income
+GET http://localhost:3000/api/movement/incomes
 
 ### Obtener todos los gastos del usuario logueado
-GET http://localhost:3000/api/movement/type/expense
+GET http://localhost:3000/api/movement/expenses
 
 ### Crear movimiento de gasto del usuario logueado
 POST http://localhost:3000/api/movement
@@ -18,7 +18,7 @@ Content-Type: application/json
   "description": "fruteria",
   "amount": 1565,
   "type": "expense",
-  "categoryId": "5d2c6d16-df94-4e04-a045-167833a5ff69"
+  "categoryId": "03e1b6b7-47d1-4c66-9d64-858fdc02f9fc"
 }
 
 ### Crear movimiento de ingreso del usuario logueado
@@ -29,19 +29,19 @@ Content-Type: application/json
   "description": "Sueldo de junio",
   "amount": 65000,
   "type": "income",
-  "categoryId": "5f692ef2-d1a4-4cf2-994c-831f3c8d311b"
+  "categoryId": "9cf8ed34-54d5-453c-9496-be60912a09b8"
 }
 
 ### Actualizar movimiento del usuario logueado
-PUT http://localhost:3000/api/movement/ecb512fa-92ee-4d0b-8de4-e0e74e5f03a7
+PUT http://localhost:3000/api/movement/1eb362ea-2448-4c6f-8768-19215b9f2902
 Content-Type: application/json
 
 {
   "description": "frutas del jardin",
   "amount": 200,
   "type": "expense",
-  "categoryId": "5d2c6d16-df94-4e04-a045-167833a5ff69"
+  "categoryId": "03e1b6b7-47d1-4c66-9d64-858fdc02f9fc"
 }
 
 ### Eliminar movimiento del usuario logueado
-DELETE http://localhost:3000/api/movement/ecb512fa-92ee-4d0b-8de4-e0e74e5f03a7
+DELETE http://localhost:3000/api/movement/68289003-2725-405d-86db-35ea748e6901

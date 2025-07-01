@@ -6,7 +6,7 @@ POST http://localhost:3000/api/categories
 Content-Type: application/json
 
 {
-  "name": "supermercado"
+  "name": "sueldo"
 }
 
 ### Actualizar una categoría del usuario logueado
