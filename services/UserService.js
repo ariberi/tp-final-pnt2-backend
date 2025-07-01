@@ -1,4 +1,5 @@
 import { User } from '../models/index.js';
+import { Op } from 'sequelize';
 
 class UserService {
 
@@ -17,8 +18,16 @@ class UserService {
             }
         }
 
-        if (updates.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(updates.email)) {
-            throw new Error("Invalid email format.");
+        if (updates.email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if (!emailRegex.test(updates.email)) {
+                throw new Error("Invalid email format.");
+            }
+
+            const existingUser = await User.findOne({ where: { email: updates.email, id: { [Op.ne]: id } } });
+            if (existingUser) {
+                throw new Error("Email already in use by another user.");
+            }
         }
 
         if (Object.keys(updates).length === 0) {

@@ -37,8 +37,8 @@ PUT http://localhost:3000/api/movement/1eb362ea-2448-4c6f-8768-19215b9f2902
 Content-Type: application/json
 
 {
-  "description": "frutas del jardin",
-  "amount": 200,
+  "description": "Compra de frutas",
+  "amount": 9,
   "type": "expense",
   "categoryId": "03e1b6b7-47d1-4c66-9d64-858fdc02f9fc"
 }
