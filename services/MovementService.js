@@ -1,5 +1,7 @@
 import { Category, Movement } from "../models/index.js";
-import categoryService from "./CategoryService.js";
+import CategoryService from "./CategoryService.js";
+
+const categoryService = new CategoryService();
 
 class MovementService {
   async create(description, amount, date, type, categoryId, userId) {
@@ -58,7 +60,7 @@ class MovementService {
     }
 
     return Movement.findAll({
-      where: { userId, CategoryId: categoryId },
+      where: { userId, categoryId },
       include: [Category],
     });
   }
@@ -124,4 +126,4 @@ class MovementService {
   }
 }
 
-export default new MovementService();
+export default MovementService;
