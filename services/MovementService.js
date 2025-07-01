@@ -76,13 +76,26 @@ class MovementService {
         });
     }
 
-
-
     async update(movementId, description, amount, date, type, categoryId, userId) {
 
         if (!description || !amount || !type || !categoryId || !userId) {
             throw new Error("Missing required fields: description, amount, type, or categoryId");
         }
+
+        if (!["income", "expense"].includes(type)) {
+            throw new Error('Invalid type. Must be "income" or "expense".');
+        }
+
+        if (typeof amount !== 'number' || amount <= 0) {
+            throw new Error("Amount must be a positive number.");
+        }
+
+        if (description.trim().length > 100) {
+            throw new Error("Description must be less than 100 characters.");
+        }
+
+        const category = await categoryService.findById({id: categoryId, userId});
+        if (!category) throw new Error("Category not found for the given user.");
 
         const data = { description, amount, date, type, categoryId };
 
