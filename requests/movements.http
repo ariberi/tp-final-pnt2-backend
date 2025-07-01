@@ -29,7 +29,7 @@ Content-Type: application/json
   "description": "Sueldo de junio",
   "amount": 65000,
   "type": "income",
-  "categoryId": "9cf8ed34-54d5-453c-9496-be60912a09b8"
+  "categoryId": "a84626fb-f63f-42a6-9d16-734c781f6c05"
 }
 
 ### Actualizar movimiento del usuario logueado

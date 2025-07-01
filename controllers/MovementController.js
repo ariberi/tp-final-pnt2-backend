@@ -9,9 +9,6 @@ class MovementController {
         const { userId } = req;
 
         try {
-            if (!description || !amount || !date || !type || !categoryId) {
-                return res.status(400).json({ error: "All fields are required" });
-            }
 
             const movement = await this.movementService.create(
                 description,
